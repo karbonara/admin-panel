@@ -1,0 +1,1 @@
+export { AddGoods } from './ui/AddGoods'

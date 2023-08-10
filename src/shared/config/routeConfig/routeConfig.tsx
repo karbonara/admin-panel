@@ -1,9 +1,9 @@
-
 import { MainPage } from "pages/MainPage"
 import NotFoundPage from "pages/NotFoundPage"
 import { OrderPage } from "pages/OrderPage"
 import { PromoCodePage } from "pages/PromoCodePage"
 import { RegisterPage } from "pages/Register"
+import { IndividualEditPage } from "pages/IndividualEditPage"
 import { SettingsPage } from "pages/Settings"
 import { RouteProps } from "react-router-dom"
 
@@ -15,6 +15,7 @@ export enum AppRoutes {
   ORDER = '/order',
   REGISTER = '/register',
   PROMOCODE = '/promocode',
+  INDIVIDUALEDIT = '/individual-edit',
 
   // 404
   NOT_FOUND = '/404',
@@ -28,6 +29,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ORDER]: '/order',
   [AppRoutes.REGISTER]: '/register',
   [AppRoutes.PROMOCODE]: '/promocode',
+  [AppRoutes.INDIVIDUALEDIT]: '/individual-edit',
 
   // 404
   [AppRoutes.NOT_FOUND]: '*',
@@ -58,6 +60,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.PROMOCODE]: {
     path: RoutePath[AppRoutes.PROMOCODE],
     element: <PromoCodePage />
+  },
+  [AppRoutes.INDIVIDUALEDIT]: {
+    path: RoutePath[AppRoutes.INDIVIDUALEDIT],
+    element: <IndividualEditPage />
   },
 
 

@@ -3,7 +3,7 @@ import { StateSchema } from './StateSchema';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
-import { useDispatch } from 'react-redux';
+import { $api } from 'shared/api/api';
 
 // Функция, которая создает хранилище Redux. 
 export function createReduxStore(initialState?: StateSchema) {
@@ -18,6 +18,13 @@ export function createReduxStore(initialState?: StateSchema) {
     reducer: reducerManager.reduce,
     devTools: process.env.NODE_ENV !== 'production',
     preloadedState: initialState,
+    middleware: getDefaultMiddleware => getDefaultMiddleware({
+      thunk: {
+        extraArgument: {
+          api: $api
+        },
+      },
+    }),
   });
   // @ts-ignore
   store.reducerManager = reducerManager;

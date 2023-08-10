@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --env port=3000",
+    "start": "webpack serve --env port=8080",
     "start:dev:server": "node ./json-server/index.js",
     "build": "webpack --env mode=production",
     "dev": "webpack --env mode=development",
@@ -27,6 +27,7 @@
     "jest": "^27.5.1",
     "json-server": "^0.17.3",
     "mini-css-extract-plugin": "^2.5.3",
+    "react-hook-form": "^7.45.1",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
