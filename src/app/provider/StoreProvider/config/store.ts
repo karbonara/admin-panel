@@ -1,6 +1,5 @@
 import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
-import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 import { $api } from 'shared/api/api';
@@ -9,7 +8,6 @@ import { $api } from 'shared/api/api';
 export function createReduxStore(initialState?: StateSchema) {
   // Объект, который содержит все редьюсеры приложения
   const rootReducers: ReducersMapObject<StateSchema> = {
-    counter: counterReducer,
     user: userReducer,
   }
   const reducerManager = createReducerManager(rootReducers);

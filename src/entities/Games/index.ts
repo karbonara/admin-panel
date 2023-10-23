@@ -1,0 +1,1 @@
+import { GamesData, GamesDataSchema } from "./model/types/games";

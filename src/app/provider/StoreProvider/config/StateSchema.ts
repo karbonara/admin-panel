@@ -1,14 +1,16 @@
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
-import { CounterSchema } from 'entities/Counter';
+import { GamesDataSchema } from 'entities/Games/model/types/games';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUser';
+import { EditBasicGoodSchema } from 'features/EditBasicGood';
 
 export interface StateSchema {
-  counter: CounterSchema;
   user: UserSchema;
 
   // Асинхронные редьюсеры 
   loginForm?: LoginSchema;
+  editBasicGood?: EditBasicGoodSchema;
+  gamesData?: GamesDataSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

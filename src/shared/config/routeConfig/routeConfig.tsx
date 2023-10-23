@@ -62,7 +62,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     element: <PromoCodePage />
   },
   [AppRoutes.INDIVIDUALEDIT]: {
-    path: RoutePath[AppRoutes.INDIVIDUALEDIT],
+    path: `${RoutePath[AppRoutes.INDIVIDUALEDIT]}/:id`,
     element: <IndividualEditPage />
   },
 

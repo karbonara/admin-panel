@@ -1,61 +1,38 @@
-import { CardContent } from '@mui/material'
-import CardContainer from 'shared/ui/Card/Card'
-import CollapsibleTable from 'shared/ui/CollapsibleTable/CollapsibleTable'
-import Typography from '@mui/material/Typography';
+import React, { useState, useEffect, memo } from 'react';
+import { CardContent, Typography } from '@mui/material';
+import CardContainer from 'shared/ui/Card/Card';
+import axios from 'axios';
+import BasicTable from 'shared/ui/BasicTable/BasicTable';
 
-export const desserts = [
-  {
-    name: 'АРТЕМ',
-    calories: 111,
-    fat: 222,
-    carbs: 33,
-    protein: 444,
-    price: 1,
-    history: [
-      {
-        date: 'тут дата',
-        customerId: 'айди',
-        amount: 33,
-      },
-      {
-        date: 'еще дата',
-        customerId: 'еще айди',
-        amount: 222,
-      },
-    ],
-  },
-  {
-    name: 'Frozen yoghurt',
-    calories: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-    price: 3.99,
-    history: [
-      {
-        date: '2020-01-05',
-        customerId: '11091700',
-        amount: 3,
-      },
-      {
-        date: '2020-01-02',
-        customerId: 'Anonymous',
-        amount: 1,
-      },
-    ],
-  },
-];
-const OrderPage = () => {
+const OrderPage = memo(() => {
+  const [gameData, setGameData] = useState([]);
+
+  useEffect(() => {
+    // Здесь делаем запрос к серверу для получения данных об играх
+    axios.get('http://localhost:5000/api/games')
+      .then(response => {
+        setGameData(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching game data:', error);
+      });
+  }, []);
+
+  const tableColumns = [
+    { key: 'name', label: 'Название' },
+    { key: 'price', label: 'Цена' },
+    { key: 'sale', label: 'Размер скидки' },
+    { key: 'oldPrice', label: 'Старая цена' },
+  ];
+
   return (
     <CardContainer sx={{ mt: 2, p: 2 }}>
       <CardContent>
         <Typography variant="h4">Заказы</Typography>
-        <CollapsibleTable data={desserts} />
+        <BasicTable rows={gameData} columns={tableColumns} />
       </CardContent>
     </CardContainer>
   )
-}
+})
 
-export default OrderPage
-
-
+export default OrderPage;
