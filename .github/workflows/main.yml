@@ -6,17 +6,19 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
+  pipeline:
+  runs-on: ubuntu-latest
+  strategy:
+    matrix:
+      node-version: [17.x]
+
+      steps:
+        - uses: actions/checkout@v2
+        - name: Starting Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v2
+          with:
+            node-version: ${{ matrix.node-version }}
+        - name: install modules
+          run: npm install
+        - name: build production project
+          run: npm run build
